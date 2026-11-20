@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KEN AI | Your Intelligent Assistant</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#080d1c;color:white;
+ font-family:Arial,sans-serif;
+}
+header{
+ padding:20px;display:flex;align-items:center;
+ justify-content:space-between;
+ border-bottom:1px solid #202b48;
+}
+.logo{font-size:25px;font-weight:bold}
+.logo span{color:#8185ff}
+main{max-width:850px;margin:auto;padding:35px 20px}
+.hero{text-align:center;margin:65px 0 40px}
+.hero h1{font-size:42px;margin:10px}
+.hero h1 span{
+ background:linear-gradient(90deg,#399bff,#a16bff);
+ -webkit-background-clip:text;color:transparent;
+}
+.hero p{color:#aab5d0;line-height:1.7}
+.tag{
+ display:inline-block;padding:8px 15px;
+ background:#171f3b;border-radius:30px;
+ color:#9ca9ff;font-size:13px;
+}
+.chat{
+ background:#101a30;border:1px solid #283657;
+ border-radius:18px;padding:20px;
+ min-height:260px;
+}
+#messages{min-height:200px}
+.message{
+ padding:13px 16px;margin:12px 0;
+ border-radius:13px;line-height:1.5;
+ max-width:90%;white-space:pre-wrap;
+}
+.bot{background:#1d2a49;color:#e4eaff}
+.user{background:#5544a7;margin-left:auto}
+.input-area{display:flex;gap:10px;margin-top:15px}
+input{
+ flex:1;min-width:0;padding:16px;
+ border-radius:12px;border:1px solid #34446c;
+ background:#0b1326;color:white;outline:none;
+}
+button{
+ border:0;border-radius:12px;padding:14px 20px;
+ background:linear-gradient(100deg,#358aff,#8255e9);
+ color:white;font-weight:bold;cursor:pointer;
+}
+button:hover{opacity:.85}
+.features{
+ display:grid;grid-template-columns:repeat(3,1fr);
+ gap:12px;margin-top:35px;
+}
+.feature{
+ background:#111b32;padding:20px;
+ border:1px solid #243253;border-radius:14px;
+}
+.feature h3{font-size:16px}
+.feature p{font-size:13px;color:#aab5d0;line-height:1.5}
+footer{text-align:center;padding:35px;color:#8290ad;font-size:13px}
+@media(max-width:600px){
+ .hero h1{font-size:32px}
+ .features{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">KEN <span>AI</span> ✦</div>
+ <span class="tag">INTELLIGENT ASSISTANT</span>
+</header>
+
+<main>
+<section class="hero">
+ <span class="tag">WELCOME TO THE FUTURE</span>
+ <h1>Meet <span>KEN AI</span></h1>
+ <p>Your intelligent digital assistant.<br>
+ Ask questions, explore ideas and get things done.</p>
+</section>
+
+<section class="chat">
+ <div id="messages">
+  <div class="message bot">
+   Hello! Welcome to KEN AI. 👋
+   How can I assist you today?
+  </div>
+ </div>
+ <div class="input-area">
+  <input id="question" placeholder="Ask KEN AI anything..."
+   onkeydown="if(event.key==='Enter')sendMessage()">
+  <button onclick="sendMessage()">Send</button>
+ </div>
+</section>
+
+<section class="features">
+ <div class="feature">
+  <h3>✦ Smart Assistant</h3>
+  <p>Get help with everyday questions and ideas.</p>
+ </div>
+ <div class="feature">
+  <h3>⚡ Fast Responses</h3>
+  <p>Enjoy a clean and simple assistant experience.</p>
+ </div>
+ <div class="feature">
+  <h3>🌐 Everywhere</h3>
+  <p>Designed for mobile and desktop screens.</p>
+ </div>
+</section>
+</main>
+
+<footer>
+ © 2026 KEN AI. All rights reserved.
+</footer>
+
+<script>
+function sendMessage(){
+ const input=document.getElementById('question');
+ const messages=document.getElementById('messages');
+ const question=input.value.trim();
+ if(!question)return;
+
+ const user=document.createElement('div');
+ user.className='message user';
+ user.textContent=question;
+ messages.appendChild(user);
+ input.value='';
+
+ const bot=document.createElement('div');
+ bot.className='message bot';
+ bot.textContent="Thanks for your question! KEN AI's intelligent response engine is coming soon. This is currently a demonstration.";
+ messages.appendChild(bot);
+
+ messages.scrollTop=messages.scrollHeight;
+}
+</script>
+</body>
+</html>
