@@ -62,6 +62,6 @@ export default {
       }
     }
 
-    return new Response("KEN AI Worker is running!");
+    return env.ASSETS.fetch(request);
   }
 };
