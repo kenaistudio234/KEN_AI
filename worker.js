@@ -50,7 +50,11 @@ export default {
                 role: "user",
                 content: question
               }
-            ]
+                        ],
+            chat_template_kwargs: {
+              enable_thinking: false
+            },
+            max_completion_tokens: 512
           }
         );
 
