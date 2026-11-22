@@ -122,25 +122,41 @@ footer{text-align:center;padding:35px;color:#8290ad;font-size:13px}
 </footer>
 
 <script>
-function sendMessage(){
- const input=document.getElementById('question');
- const messages=document.getElementById('messages');
- const question=input.value.trim();
- if(!question)return;
+async function sendMessage() {
+  const input = document.getElementById("question");
+  const messages = document.getElementById("messages");
+  const question = input.value.trim();
 
- const user=document.createElement('div');
- user.className='message user';
- user.textContent=question;
- messages.appendChild(user);
- input.value='';
+  if (!question) return;
 
- const bot=document.createElement('div');
- bot.className='message bot';
- bot.textContent="Thanks for your question! KEN AI's intelligent response engine is coming soon. This is currently a demonstration.";
- messages.appendChild(bot);
+  const user = document.createElement("div");
+  user.className = "message user";
+  user.textContent = question;
+  messages.appendChild(user);
+  input.value = "";
 
- messages.scrollTop=messages.scrollHeight;
-}
+  const bot = document.createElement("div");
+  bot.className = "message bot";
+  bot.textContent = "KEN AI is thinking...";
+  messages.appendChild(bot);
+
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ question })
+    });
+
+    const data = await response.json();
+    bot.textContent = response.ok
+      ? data.answer
+      : (data.error || "KEN AI could not reply.");
+  } catch {
+    bot.textContent = "Could not connect to KEN AI. Please try again.";
+  }
+
+  messages.scrollTop = messages.scrollHeight;
+}}
 </script>
 </body>
 </html>
